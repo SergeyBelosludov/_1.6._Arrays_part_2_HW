@@ -11,8 +11,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        int[] array = generateRandomArray();
-        System.out.println(Arrays.toString(array));
+        int[] arr = generateRandomArray();
+        System.out.println(Arrays.toString(arr));
 
         System.out.println();
         System.out.println("***** Задание 1 *****");
@@ -28,7 +28,7 @@ public class Main {
         – Соблюдены все условия задания.
  */
         int amount = 0;
-        for (int i : array) {
+        for (int i : arr) {
             amount += i;
         }
         System.out.println("Сумма трат за месяц составила " + amount + " рублей");
@@ -47,11 +47,11 @@ public class Main {
         – Результат программы выведен в консоль согласно условию задания.
  */
         int maxAmount = -1;
-        for (int j : array) {
+        for (int j : arr) {
             if (j > maxAmount) maxAmount = j;
         }
         int minAmount = maxAmount + 1;
-        for (int k : array) {
+        for (int k : arr) {
             if (k < minAmount) {
                 minAmount = k;
             }
@@ -72,7 +72,7 @@ public class Main {
         – При изменении данных массива программа работает корректно и выдает верный результат.
         – В коде учтено, что средняя сумма трат может быть как целым, так и дробным числом.
       */
-        double averageSpent = amount / (array.length);
+        double averageSpent = amount / (arr.length);
         System.out.println("Средняя сумма трат за месяц составила " + averageSpent + " рублей");
 
         System.out.println();
@@ -95,14 +95,154 @@ char[] reverseFullName = { 'n', 'a', 'v', 'I', ' ', 'v', 'o', 'n', 'a', 'v', 'I'
         – Написанный код выводит в консоль корректные данные.
  */
         char[] reverseFullName = {'n', 'a', 'v', 'I', ' ', 'v', 'o', 'n', 'a', 'v', 'I'};
-        int i;
-        for (i = reverseFullName.length - 1; i >= 0; --i) {
-            System.out.print(reverseFullName[i]);
+        int n;
+        for (n = reverseFullName.length - 1; n >= 0; --n) {
+            System.out.print(reverseFullName[n]);
         }
         System.out.println();
 
+        System.out.println();
+        System.out.println("***** Повышенная сложность. Задание 5 *****");
+        System.out.println();
+        /*
+        Создайте матрицу 3х3 (двумерный массив типа int). Заполните единицами обе диагонали матрицы и напечатайте
+        ее в консоль. Постарайтесь заполнить обе диагонали в одном цикле.
+- Для печати следует использовать следующий код:
+    for (int[] row : matrix) {
+    	for (int column : row) {
+    		System.out.print(column + " ");
+    	}
+    	System.out.println();
+    }
+- Критерии оценки
+        – В консоль выводится матрица 3х3 со значениями единицы по диагонали.
+        – При изменении единицы на другое значение матрица выводится в консоль корректно.
+        – Для вывода результата в консоль используется один цикл.
+         */
+        int[][] matrix = new int[3][3];
+        for (n = 0; n < 3; n++)
+            for (int j = 0; j < 3; j++) {
+                if ((n == j) || ((n - j) == 2) || ((j - n) == 2)) {
+                    matrix[n][j] = 1;
+                } else {
+                    matrix[n][j] = 0;
+                }
+            }
+        for (int[] row : matrix) {
+            for (int column : row) {
+                System.out.print(column + " ");
+            }
+            System.out.println();
+        }
 
+        System.out.println();
+        System.out.println("***** Повышенная сложность. Задание 6 *****");
+        System.out.println();
+        /*
+        У нас есть массив, в котором содержатся целочисленные значения от 1 до 5.
+Наш коллега что-то напутал, в итоге массив читается не с начала, а с конца.
+Нам нужно исправить ошибку и переработать код так, чтобы массив читался в правильном порядке.
+Нам дан массив чисел: {5, 4, 3, 2, 1}
+Необходимо привести его к виду: {1, 2, 3, 4, 5}
+Решите задачу с использованием дополнительного массива.
+Напечатайте массив до преобразования и после с помощью
+System.out.println(Arrays.toString(arr));
+- Критерии оценки
+    – В консоль выведен результат программы до преобразований массива.
+    – В консоль выведен результат программы после преобразований массива.
+    – Программа выводит корректный результат при смене значений внутри массива.
+         */
+        int[] array = {5, 4, 3, 2, 1};
+        System.out.println(Arrays.toString(array));
 
+        int[] array2 = new int[array.length];
+        for (int i = array.length - 1; i > 0; ) {
+            for (int j = 0; j < array.length; j++) {
+                array2[j] = array[i];
+                i--;
+            }
+        }
+        System.out.println(Arrays.toString(array2));
 
+        System.out.println();
+        System.out.println("***** Повышенная сложность. Задание 7 *****");
+        System.out.println();
+        /*
+        Решите предыдущее задание, но без использования дополнительного массива.
+Необходимо добиться того, чтобы исходный массив полностью соответствовал второму массиву из прошлого задания.
+Выведите результат программы в консоль тем же способом.
+**Уточнения**:
+- Это задание не на сортировку.
+- Не использовать Arrays.sort() и другие способы сортировок.
+- Числа в порядке убывания даны исключительно для указания направления чтения.
+- Массив может быть 5 8 2 3 9, нужно из него сделать 9 3 2 8 5.
+---- Критерии оценки
+        – Задание решено без применения дополнительного массива.
+        – В консоль выведен результат программы до преобразований массива.
+        – В консоль выведен результат программы после преобразований массива.
+        – Программа выводит корректный результат при смене значений внутри массива.
+         */
+        int[] array3 = {5, 8, 2, 3, 9};
+        System.out.println(Arrays.toString(array3));
+        for (int i = 0; i < array3.length / 2; i++) {
+            int reverse = array3[i];
+            array3[i] = array3[array3.length - i - 1];
+            array3[array3.length - i - 1] = reverse;
+        }
+        System.out.println(Arrays.toString(array3));
+
+        System.out.println();
+        System.out.println("***** Очень сложно. Задание 8 *****");
+        System.out.println();
+        /*
+        Задача, которая используется/бывает/встречается на собеседованиях.
+Дан массив чисел {−6, 2, 5, −8, 8, 10, 4, −7, 12, 1}
+Необходимо найти два числа, сумма которых равна −2.
+Напечатать эти числа в консоль.
+- **Подсказка**
+         Может потребоваться отсортировать массив с помощью Arrays.sort(arr).
+    - Критерии оценки
+        – Найдены два числа, удовлетворяющие условию задачи.
+        – При изменении значений массива в консоль выводится корректный результат.
+        – В консоль выведен результат решения задания.
+         */
+        int[] array4 = {-6, 2, 5, -8, 8, 10, 4, -7, 12, 1};
+//        System.out.println(Arrays.toString(array4));
+        int sum = -2;
+        Arrays.sort(array4);
+//        System.out.println(Arrays.toString(array4));
+        int min = 0;
+        int max = array4.length - 1;
+        while (min < max) {
+            if (array4[min] + array4[max] == sum) {
+                System.out.println("Пара чисел, чья сумма = (" + sum + ") - это (" + array4[min] + ") и (" + array4[max] + ")");
+//                return;
+            }
+            if (array4[min] + array4[max] < sum) {
+                min++;
+            } else {
+                max--;
+            }
+        }
+
+        System.out.println();
+        System.out.println("***** Очень сложно. Задание 9 *****");
+        System.out.println();
+        /*
+        Усложняем предыдущую задачу. Найдите все пары чисел, сумма которых равна −2. Напечатайте их в консоль.
+- Критерии оценки
+        – Найдены все пары чисел, удовлетворяющие условию задачи.
+        – При изменении значений массива в консоль выводится корректный результат.
+        – В консоль выведен результат решения задания.
+         */
+
+        for (int i = 0; i < array4.length; i++) {
+            for (int j = i + 1; j < array4.length; j++) {
+                if (array4[i] + array4[j] == sum) {
+                    System.out.println("Пара чисел, чья сумма = (" + sum + ") - это (" + array4[i] + ") и (" + array4[j] + ")");
+//               return;
+                }
+            }
+        }
     }
 }
