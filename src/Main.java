@@ -207,23 +207,9 @@ System.out.println(Arrays.toString(arr));
         – В консоль выведен результат решения задания.
          */
         int[] array4 = {-6, 2, 5, -8, 8, 10, 4, -7, 12, 1};
-//        System.out.println(Arrays.toString(array4));
         int sum = -2;
-        Arrays.sort(array4);
-//        System.out.println(Arrays.toString(array4));
-        int min = 0;
-        int max = array4.length - 1;
-        while (min < max) {
-            if (array4[min] + array4[max] == sum) {
-                System.out.println("Пара чисел, чья сумма = (" + sum + ") - это (" + array4[min] + ") и (" + array4[max] + ")");
-//                return;
-            }
-            if (array4[min] + array4[max] < sum) {
-                min++;
-            } else {
-                max--;
-            }
-        }
+        findPairNumbers(array4, sum);
+//      смотри метод к данной задаче в конце домашки после main
 
         System.out.println();
         System.out.println("***** Очень сложно. Задание 9 *****");
@@ -240,9 +226,26 @@ System.out.println(Arrays.toString(arr));
             for (int j = i + 1; j < array4.length; j++) {
                 if (array4[i] + array4[j] == sum) {
                     System.out.println("Пара чисел, чья сумма = (" + sum + ") - это (" + array4[i] + ") и (" + array4[j] + ")");
-//               return;
                 }
             }
         }
+    }
+//        К задаче номер 8:
+    public static void findPairNumbers (int[] array4, int sum) {
+        Arrays.sort(array4);
+        int min = 0;
+        int max = array4.length - 1;
+        while (min < max) {
+            if (array4[min] + array4[max] == sum) {
+                System.out.println("Пара чисел, чья сумма = (" + sum + ") - это (" + array4[min] + ") и (" + array4[max] + ")");
+                return;
+            }
+            if (array4[min] + array4[max] < sum) {
+                min++;
+            } else {
+                max--;
+            }
+        }
+        System.out.println("Пары чисел, чья сумма = (" + sum + "), в данном масиве нет.");
     }
 }
